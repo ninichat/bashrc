@@ -1,0 +1,38 @@
+# conditionals
+_isxrunning=false
+[[ -n "$DISPLAY" ]] && _isxrunning=true
+_isroot=false
+[[ $UID -eq 0 ]] && _isroot=true
+
+# bash opts
+shopt -s cdspell                 # Correct cd typos
+shopt -s checkwinsize            # Update windows size on command
+shopt -s histappend              # Append History instead of overwriting file
+shopt -s cmdhist                 # Bash attempts to save all lines of a multiple-line command in the same history entry
+shopt -s expand_aliases
+shopt -s extglob                 # Extended pattern
+shopt -s no_empty_cmd_completion # No empty completion
+
+# completion
+complete -cf sudo # sudo will not be followed by a filename
+if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+  . /usr/share/bash-completion/bash_completion
+fi
+
+# add $HOME/bin to path
+export PATH=/usr/local/bin:$PATH
+if [[ -d "$HOME/bin" ]] ; then
+  PATH="$HOME/bin:$PATH"
+fi
+
+# MVP
+export EDITOR="vim"
+
+# make multiple shells share the same history file
+export HISTSIZE=1000            # bash history will save N commands
+export HISTFILESIZE=${HISTSIZE} # bash will remember N commands
+export HISTCONTROL=ignoreboth   # ingore duplicates and spaces
+export HISTIGNORE='&:ls:ll:la:cd:exit:clear:history'
+
+# Gotta type fast
+xset r rate 250 100

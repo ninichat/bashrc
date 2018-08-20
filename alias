@@ -1,0 +1,64 @@
+# modified commands
+alias df='df -h'
+alias diff='colordiff'              # requires colordiff package
+alias du='du -c -h'
+alias free='free -m'                # show sizes in mb
+alias grep='grep -E --color=auto -d skip'
+alias mkdir='mkdir -p -v'
+alias more='less'                   # more doesn't have vim shortcuts
+alias ping='ping -c 3'
+
+if ! $_isroot; then
+    alias scat='sudo cat'
+    alias svim='sudoedit'
+    alias reboot='sudo reboot'
+fi
+
+# pacman aliases
+if ! $_isroot; then
+    alias pacman='sudo pacman'
+fi
+
+alias pacupg='pacman -Syu'            # synchronize with repositories and then upgrade packages that are out of date on the local system.
+alias pacupd='pacman -Sy'             # refresh of all package lists after updating /etc/pacman.d/mirrorlist
+alias pacin='pacman -S'               # install specific package(s) from the repositories
+alias pacinu='pacman -U'              # install specific local package(s)
+alias pacre='pacman -R'               # remove the specified package(s), retaining its configuration(s) and required dependencies
+alias pacun='pacman -Rcsn'            # remove the specified package(s), its configuration(s) and unneeded dependencies
+alias pacinfo='pacman -Si'            # display information about a given package in the repositories
+alias pacse='pacman -Ss'              # search for package(s) in the repositories
+
+alias pacclean="pacman -Sc"           # delete all not currently installed package files
+alias pacmake="makepkg -fcsi"         # make package from pkgbuild file in current directory
+alias pacmirrors='svim /etc/pacman.d/mirrorlist'
+
+# ls
+alias ls='ls -h --color=auto'
+alias l='ls -Ah --color=auto'
+alias lr='ls -r'
+alias ll='ls -alh'
+alias lm='la | less'
+
+# alias for activating env1
+alias venv='source ~/env1/bin/activate'
+
+# With password manager, disable logging the password in ram
+alias qutebrowser='qutebrowser --loglines 0'
+
+# Convenience aliases
+alias v=vim
+__git_complete g __git_main
+alias g=git
+
+# Json pretty printing
+pjson_s() {
+    echo "$1" | python -m json.tool
+}
+
+pjson_f() {
+    python -m json.tool "$1"
+}
+
+pjson_w() {
+    curl "$1" | python -m json.tool
+}

@@ -1,0 +1,4 @@
+source ~/.bash/settings
+source ~/.bash/colors
+source ~/.bash/alias
+source ~/.bash/functions
