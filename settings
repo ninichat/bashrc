@@ -16,7 +16,12 @@ shopt -s no_empty_cmd_completion # No empty completion
 # completion
 complete -cf sudo # sudo will not be followed by a filename
 if [[ -f /usr/share/bash-completion/bash_completion ]]; then
-  . /usr/share/bash-completion/bash_completion
+    . /usr/share/bash-completion/bash_completion
+fi
+
+# command not found
+if [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]]; then
+    . /usr/share/doc/pkgfile/command-not-found.bash
 fi
 
 # add $HOME/bin to path
